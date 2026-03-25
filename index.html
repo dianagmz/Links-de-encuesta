@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tu experiencia en Lima</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:     #7C5CBF;
+      --purple-light: #C9B8E8;
+      --purple-bg:  #D9CCEE;
+      --teal:       #A0E8E0;
+      --peach:      #F5B89A;
+      --white:      #FFFFFF;
+      --text-dark:  #1a1a2e;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f5f0fb;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    /* ── PAGE WRAPPER ── */
+    .page {
+      background: var(--white);
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 60px;
+    }
+
+    /* ── DECORATIVE BLOBS ── */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .blob-teal-tl  { width: 120px; height: 120px; background: var(--teal);        top: -30px;  left: -40px; }
+    .blob-purple-tr{ width: 100px; height: 100px; background: var(--purple-light); top: -20px;  right: -30px; border-radius: 50%; }
+    .blob-peach-mid{ width: 70px;  height: 70px;  background: var(--peach);        top: 200px;  right: 30px; }
+    .blob-teal-bl  { width: 90px;  height: 90px;  background: var(--teal);         bottom: 320px; left: -20px; }
+    .blob-purple-br{ width: 110px; height: 110px; background: var(--purple-light); bottom: 160px; right: -30px; }
+    .blob-peach-bot{ width: 80px;  height: 80px;  background: var(--peach);        bottom: 80px;  right: 20px; }
+
+    /* ── HERO TITLE ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 48px 32px 8px 32px;
+    }
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.6rem, 9vw, 3.2rem);
+      font-weight: 900;
+      color: var(--purple);
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+    .hero .subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.2rem, 5vw, 1.5rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-top: 8px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 3px;
+      background: linear-gradient(90deg, var(--purple) 60%, var(--purple-light));
+      margin: 16px 32px 20px;
+      border-radius: 2px;
+    }
+
+    /* ── INFO CARD ── */
+    .card {
+      position: relative;
+      z-index: 1;
+      background: var(--purple-bg);
+      margin: 0 20px 24px;
+      border-radius: 16px;
+      padding: 20px 22px;
+    }
+    .card h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(0.95rem, 4vw, 1.1rem);
+      font-weight: 800;
+      color: var(--purple);
+      margin-bottom: 10px;
+    }
+    .card p {
+      font-size: clamp(0.88rem, 3.5vw, 0.97rem);
+      color: var(--text-dark);
+      line-height: 1.55;
+    }
+    .card .highlight {
+      font-weight: 800;
+      margin-top: 10px;
+      color: var(--text-dark);
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
+    }
+
+    /* ── SORTEO SECTION ── */
+    .sorteo {
+      position: relative;
+      z-index: 1;
+      margin: 0 20px 28px;
+    }
+    .sorteo h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.1rem, 5vw, 1.3rem);
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+    }
+
+    /* ── LUNAHUANA CARD ── */
+    .luna-card {
+      background: var(--teal);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+      position: relative;
+    }
+    .luna-img {
+      width: 48%;
+      object-fit: cover;
+      display: block;
+    }
+    .luna-text {
+      flex: 1;
+      padding: 18px 14px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+    }
+    .luna-text h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.1rem, 5vw, 1.35rem);
+      font-weight: 900;
+      color: var(--text-dark);
+      line-height: 1.15;
+    }
+    .luna-text p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(0.8rem, 3.2vw, 0.92rem);
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    /* star badge */
+    .star-badge {
+      position: absolute;
+      top: -14px;
+      right: 14px;
+      width: 44px;
+      height: 44px;
+      background: var(--purple-light);
+      clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    }
+
+    /* ── BUTTONS ── */
+    .buttons {
+      position: relative;
+      z-index: 1;
+      margin: 10px 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 50px;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(0.95rem, 4vw, 1.05rem);
+      font-weight: 800;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 4px 14px rgba(124,92,191,0.25);
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-es {
+      background: var(--purple);
+      color: var(--white);
+    }
+    .btn-en {
+      background: var(--white);
+      color: var(--purple);
+      border: 2.5px solid var(--purple);
+      box-shadow: 0 4px 14px rgba(124,92,191,0.15);
+    }
+    .btn span.flag { margin-right: 8px; font-size: 1.1em; }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-top: 36px;
+      padding: 0 20px;
+      font-size: 0.78rem;
+      color: #888;
+    }
+    footer a { color: var(--purple); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Blobs decorativos -->
+    <div class="blob blob-teal-tl"></div>
+    <div class="blob blob-purple-tr"></div>
+    <div class="blob blob-peach-mid"></div>
+    <div class="blob blob-teal-bl"></div>
+    <div class="blob blob-purple-br"></div>
+    <div class="blob blob-peach-bot"></div>
+
+    <!-- Título hero -->
+    <div class="hero">
+      <h1>Tu experiencia<br>en Lima</h1>
+      <p class="subtitle">vale la pena estudiarla.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Card informativa -->
+    <div class="card">
+      <h2>¿Eres estudiante internacional en la PUCP?</h2>
+      <p>Participa en una investigación sobre cómo desarrollas habilidades interculturales durante tu intercambio</p>
+      <p class="highlight">Completa una encuesta de 15 min</p>
+    </div>
+
+    <!-- Sorteo -->
+    <div class="sorteo">
+      <h3>Sorteo para participantes</h3>
+      <div class="luna-card">
+        <img
+          class="luna-img"
+          src="imagenL.jpg"
+          alt="Full Day Lunahuaná - canotaje"
+          onerror="this.style.background='#7C5CBF';this.style.minHeight='160px';this.removeAttribute('src')"
+        />
+        <div class="luna-text">
+          <h4>FULL DAY a<br>LUNAHUANÁ</h4>
+          <p>canotaje incluido</p>
+        </div>
+        <div class="star-badge"></div>
+      </div>
+    </div>
+
+    <!-- Botones encuesta -->
+    <div class="buttons">
+      <a class="btn btn-es" href="https://forms.gle/2dwQk8ynxyx9wi4H9" target="_blank" rel="noopener">
+        <span class="flag">🇵🇪</span> Ir a la encuesta — Español
+      </a>
+      <a class="btn btn-en" href="https://forms.gle/rn87Q3KdGfKdwq8V6" target="_blank" rel="noopener">
+        <span class="flag">🇺🇸</span> Go to survey — English
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      Contacto: <a href="mailto:diana.gutierrezm@pucp.edu.pe">diana.gutierrezm@pucp.edu.pe</a>
+    </footer>
+
+  </div>
+</body>
+</html>
