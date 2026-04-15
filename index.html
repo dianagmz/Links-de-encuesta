@@ -4,30 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tu experiencia en Lima</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --purple:     #7C5CBF;
-      --purple-light: #C9B8E8;
-      --purple-bg:  #D9CCEE;
-      --teal:       #A0E8E0;
-      --peach:      #F5B89A;
+      --navy:       #00558F;
+      --navy-dark:  #003d6b;
+      --sky:        #A0CEE8;
+      --sky-light:  #d4eaf7;
+      --gray:       #7D94A0;
+      --gray-light: #e8eef2;
+      --gold:       #FFA300;
       --white:      #FFFFFF;
-      --text-dark:  #1a1a2e;
+      --text-dark:  #0d1f2d;
+      --text-mid:   #2e4a5e;
     }
 
     body {
-      font-family: 'Nunito', sans-serif;
-      background-color: #f5f0fb;
+      font-family: 'Barlow', sans-serif;
+      background-color: #f0f4f8;
       min-height: 100vh;
       display: flex;
       justify-content: center;
+      align-items: flex-start;
       padding: 0;
     }
 
-    /* ── PAGE WRAPPER ── */
     .page {
       background: var(--white);
       width: 100%;
@@ -38,246 +41,385 @@
       padding-bottom: 60px;
     }
 
-    /* ── DECORATIVE BLOBS ── */
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      z-index: 0;
-      pointer-events: none;
+    /* ── HEADER STRIPE ── */
+    .header-stripe {
+      background: var(--navy);
+      height: 6px;
+      width: 100%;
     }
-    .blob-teal-tl  { width: 120px; height: 120px; background: var(--teal);        top: -30px;  left: -40px; }
-    .blob-purple-tr{ width: 100px; height: 100px; background: var(--purple-light); top: -20px;  right: -30px; border-radius: 50%; }
-    .blob-peach-mid{ width: 70px;  height: 70px;  background: var(--peach);        top: 200px;  right: 30px; }
-    .blob-teal-bl  { width: 90px;  height: 90px;  background: var(--teal);         bottom: 320px; left: -20px; }
-    .blob-purple-br{ width: 110px; height: 110px; background: var(--purple-light); bottom: 160px; right: -30px; }
-    .blob-peach-bot{ width: 80px;  height: 80px;  background: var(--peach);        bottom: 80px;  right: 20px; }
 
-    /* ── HERO TITLE ── */
+    /* ── HERO ── */
     .hero {
       position: relative;
       z-index: 1;
-      padding: 48px 32px 8px 32px;
+      background: var(--navy);
+      padding: 40px 32px 36px 32px;
+      overflow: hidden;
     }
+
+    /* Diagonal accent en hero */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: var(--white);
+      clip-path: polygon(0 100%, 100% 0%, 100% 100%);
+    }
+
+    /* Decoración geométrica hero */
+    .hero-geo {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 140px;
+      height: 140px;
+      background: var(--navy-dark);
+      opacity: 0.5;
+      border-radius: 0 0 0 50%;
+    }
+    .hero-geo2 {
+      position: absolute;
+      bottom: 20px;
+      right: 40px;
+      width: 60px;
+      height: 60px;
+      background: var(--gold);
+      opacity: 0.85;
+      border-radius: 50%;
+    }
+
+    .hero-label {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 2;
+    }
+
     .hero h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(2.6rem, 9vw, 3.2rem);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.8rem, 10vw, 3.6rem);
       font-weight: 900;
-      color: var(--purple);
-      line-height: 1.1;
+      color: var(--white);
+      line-height: 1.0;
       letter-spacing: -1px;
+      position: relative;
+      z-index: 2;
     }
-    .hero .subtitle {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(1.2rem, 5vw, 1.5rem);
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero .tagline {
+      font-family: 'Barlow', sans-serif;
+      font-size: clamp(1.05rem, 4.5vw, 1.2rem);
+      font-weight: 600;
+      color: var(--sky-light);
+      margin-top: 12px;
+      line-height: 1.4;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── BODY CONTENT ── */
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 36px 28px 0;
+    }
+
+    /* Línea acento */
+    .accent-line {
+      width: 48px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    /* ── PREGUNTA PRINCIPAL ── */
+    .question {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.4rem, 6vw, 1.75rem);
       font-weight: 800;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    /* ── DESCRIPCIÓN ── */
+    .description {
+      font-size: clamp(0.95rem, 3.8vw, 1.05rem);
+      color: var(--text-mid);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    /* ── CARDS RAZONES ── */
+    .reasons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .reason-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--gray-light);
+      border-radius: 10px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--navy);
+      transition: border-color 0.2s;
+    }
+
+    .reason-card:nth-child(2) {
+      border-left-color: var(--gold);
+    }
+
+    .reason-card:nth-child(3) {
+      border-left-color: var(--gray);
+    }
+
+    .reason-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .reason-text {
+      font-size: clamp(0.88rem, 3.5vw, 0.96rem);
       color: var(--text-dark);
-      margin-top: 8px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .reason-text strong {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    /* ── TIME BADGE ── */
+    .time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 8px 16px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+    }
+
+    .time-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
     }
 
     /* ── DIVIDER ── */
     .divider {
-      height: 3px;
-      background: linear-gradient(90deg, var(--purple) 60%, var(--purple-light));
-      margin: 16px 32px 20px;
-      border-radius: 2px;
-    }
-
-    /* ── INFO CARD ── */
-    .card {
-      position: relative;
-      z-index: 1;
-      background: var(--purple-bg);
-      margin: 0 20px 24px;
-      border-radius: 16px;
-      padding: 20px 22px;
-    }
-    .card h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(0.95rem, 4vw, 1.1rem);
-      font-weight: 800;
-      color: var(--purple);
-      margin-bottom: 10px;
-    }
-    .card p {
-      font-size: clamp(0.88rem, 3.5vw, 0.97rem);
-      color: var(--text-dark);
-      line-height: 1.55;
-    }
-    .card .highlight {
-      font-weight: 800;
-      margin-top: 10px;
-      color: var(--text-dark);
-      font-size: clamp(0.9rem, 3.5vw, 1rem);
-    }
-
-    /* ── SORTEO SECTION ── */
-    .sorteo {
-      position: relative;
-      z-index: 1;
-      margin: 0 20px 28px;
-    }
-    .sorteo h3 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(1.1rem, 5vw, 1.3rem);
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 14px;
-    }
-
-    /* ── LUNAHUANA CARD ── */
-    .luna-card {
-      background: var(--teal);
-      border-radius: 16px;
-      overflow: hidden;
-      display: flex;
-      align-items: stretch;
-      position: relative;
-    }
-    .luna-img {
-      width: 48%;
-      object-fit: cover;
-      display: block;
-    }
-    .luna-text {
-      flex: 1;
-      padding: 18px 14px 18px 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 6px;
-    }
-    .luna-text h4 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(1.1rem, 5vw, 1.35rem);
-      font-weight: 900;
-      color: var(--text-dark);
-      line-height: 1.15;
-    }
-    .luna-text p {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(0.8rem, 3.2vw, 0.92rem);
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-
-    /* star badge */
-    .star-badge {
-      position: absolute;
-      top: -14px;
-      right: 14px;
-      width: 44px;
-      height: 44px;
-      background: var(--purple-light);
-      clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+      height: 1px;
+      background: var(--sky-light);
+      margin: 0 0 28px 0;
     }
 
     /* ── BUTTONS ── */
     .buttons {
-      position: relative;
-      z-index: 1;
-      margin: 10px 20px 0;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 12px;
+      margin-bottom: 32px;
     }
+
     .btn {
       display: block;
       width: 100%;
-      padding: 16px 20px;
-      border-radius: 50px;
+      padding: 17px 24px;
+      border-radius: 6px;
       text-align: center;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Barlow', sans-serif;
       font-size: clamp(0.95rem, 4vw, 1.05rem);
-      font-weight: 800;
+      font-weight: 700;
       text-decoration: none;
-      letter-spacing: 0.3px;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-      box-shadow: 0 4px 14px rgba(124,92,191,0.25);
+      letter-spacing: 0.4px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
-    .btn:active { transform: scale(0.97); }
+
+    .btn:active { transform: scale(0.98); }
+
     .btn-es {
-      background: var(--purple);
+      background: var(--navy);
       color: var(--white);
+      box-shadow: 0 4px 16px rgba(0,85,143,0.30);
     }
+
+    .btn-es:hover {
+      background: var(--navy-dark);
+      box-shadow: 0 6px 20px rgba(0,85,143,0.40);
+    }
+
     .btn-en {
       background: var(--white);
-      color: var(--purple);
-      border: 2.5px solid var(--purple);
-      box-shadow: 0 4px 14px rgba(124,92,191,0.15);
+      color: var(--navy);
+      border: 2px solid var(--navy);
     }
-    .btn span.flag { margin-right: 8px; font-size: 1.1em; }
+
+    .btn-en:hover {
+      background: var(--sky-light);
+    }
+
+    .btn span.flag {
+      margin-right: 8px;
+    }
+
+    /* ── CREDENCIAL PUCP ── */
+    .credential {
+      background: var(--sky-light);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .credential-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .credential-text {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    .credential-text strong {
+      color: var(--navy);
+      font-weight: 700;
+    }
 
     /* ── FOOTER ── */
     footer {
-      position: relative;
-      z-index: 1;
       text-align: center;
-      margin-top: 36px;
       padding: 0 20px;
       font-size: 0.78rem;
-      color: #888;
+      color: var(--gray);
+      border-top: 1px solid var(--sky-light);
+      padding-top: 20px;
     }
-    footer a { color: var(--purple); text-decoration: none; }
+
+    footer a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ── BOTTOM COLOR BAR ── */
+    .bottom-bar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--navy) 0%, var(--sky) 60%, var(--gold) 100%);
+      margin-top: 24px;
+    }
   </style>
 </head>
 <body>
   <div class="page">
 
-    <!-- Blobs decorativos -->
-    <div class="blob blob-teal-tl"></div>
-    <div class="blob blob-purple-tr"></div>
-    <div class="blob blob-peach-mid"></div>
-    <div class="blob blob-teal-bl"></div>
-    <div class="blob blob-purple-br"></div>
-    <div class="blob blob-peach-bot"></div>
+    <div class="header-stripe"></div>
 
-    <!-- Título hero -->
+    <!-- Hero -->
     <div class="hero">
-      <h1>Tu experiencia<br>en Lima</h1>
-      <p class="subtitle">vale la pena estudiarla.</p>
+      <div class="hero-geo"></div>
+      <div class="hero-geo2"></div>
+      <p class="hero-label">Investigación — PUCP 2026</p>
+      <h1>Tu experiencia<br>en Lima<br><em>vale la pena</em><br>estudiarla.</h1>
+      <p class="tagline">Comunicación intercultural<br>en estudiantes de intercambio</p>
     </div>
 
-    <div class="divider"></div>
+    <!-- Contenido -->
+    <div class="content">
 
-    <!-- Card informativa -->
-    <div class="card">
-      <h2>¿Eres estudiante internacional en la PUCP?</h2>
-      <p>Participa en una investigación sobre cómo desarrollas habilidades interculturales durante tu intercambio</p>
-      <p class="highlight">Completa una encuesta de 15 min</p>
-    </div>
+      <div class="accent-line"></div>
 
-    <!-- Sorteo -->
-    <div class="sorteo">
-      <h3>Sorteo para participantes</h3>
-      <div class="luna-card">
-        <img
-          class="luna-img"
-          src="imagenL.jpg"
-          alt="Full Day Lunahuaná - canotaje"
-          onerror="this.style.background='#7C5CBF';this.style.minHeight='160px';this.removeAttribute('src')"
-        />
-        <div class="luna-text">
-          <h4>FULL DAY a<br>LUNAHUANÁ</h4>
-          <p>canotaje incluido</p>
-        </div>
-        <div class="star-badge"></div>
+      <p class="question">¿Eres estudiante internacional de intercambio en la PUCP?</p>
+
+      <p class="description">
+        Participa en una investigación sobre cómo desarrollas habilidades interculturales durante tu semestre aquí.
+      </p>
+
+      <div class="time-badge">
+        <span class="dot"></span>
+        Solo 10 minutos de tu tiempo
       </div>
+
+      <div class="reasons">
+        <div class="reason-card">
+          <span class="reason-icon">🔎</span>
+          <p class="reason-text">
+            Este es el <strong>primer estudio de este tipo</strong> realizado en la PUCP.
+          </p>
+        </div>
+        <div class="reason-card">
+          <span class="reason-icon">🌍</span>
+          <p class="reason-text">
+            Tu experiencia como <strong>estudiante internacional</strong> es exactamente lo que este estudio necesita.
+          </p>
+        </div>
+        <div class="reason-card">
+          <span class="reason-icon">🎓</span>
+          <p class="reason-text">
+            Tu voz ayuda a construir <strong>conocimiento que beneficia a futuros estudiantes</strong> como tú.
+          </p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Credencial -->
+      <div class="credential">
+        <span class="credential-icon">🔒</span>
+        <p class="credential-text">
+          <strong>Tus datos son confidenciales.</strong>
+        </p>
+      </div>
+
+      <!-- Botones -->
+      <div class="buttons">
+        <a class="btn btn-es" href="https://forms.gle/2dwQk8ynxyx9wi4H9" target="_blank" rel="noopener">
+          <span class="flag">🇵🇪</span> Ir a la encuesta — Español
+        </a>
+        <a class="btn btn-en" href="https://forms.gle/rn87Q3KdGfKdwq8V6" target="_blank" rel="noopener">
+          <span class="flag">🇺🇸</span> Go to survey — English
+        </a>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        Contacto: <a href="mailto:diana.gutierrezm@pucp.edu.pe">diana.gutierrezm@pucp.edu.pe</a>
+      </footer>
+
     </div>
 
-    <!-- Botones encuesta -->
-    <div class="buttons">
-      <a class="btn btn-es" href="https://forms.gle/2dwQk8ynxyx9wi4H9" target="_blank" rel="noopener">
-        Ir a la encuesta — Español
-      </a>
-      <a class="btn btn-en" href="https://forms.gle/rn87Q3KdGfKdwq8V6" target="_blank" rel="noopener">
-        Go to survey — English
-      </a>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-      Contacto: <a href="mailto:diana.gutierrezm@pucp.edu.pe">diana.gutierrezm@pucp.edu.pe</a>
-    </footer>
+    <div class="bottom-bar"></div>
 
   </div>
 </body>
